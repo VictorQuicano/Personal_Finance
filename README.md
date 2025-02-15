@@ -7,60 +7,123 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Documentación del Proyecto Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Instalación y Configuración
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Requisitos Previos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Antes de comenzar, asegúrese de tener instalado lo siguiente:
 
-## Learning Laravel
+- PHP (≥8.0)
+- Composer
+- Laravel (≥9.x)
+- SQLite o MySQL
+- Node.js y npm (opcional, para assets front-end)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Clonar el Proyecto
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Ejecute el siguiente comando para clonar el repositorio:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```sh
+ git clone https://github.com/tu-repo/tu-proyecto.git
+ cd tu-proyecto
+```
 
-## Laravel Sponsors
+### Instalar Dependencias
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Ejecute el siguiente comando para instalar las dependencias del proyecto:
 
-### Premium Partners
+```sh
+composer install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Configurar el Archivo de Entorno
 
-## Contributing
+Copie el archivo de configuración y ajústelo según la base de datos que desea usar:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```sh
+cp .env.example .env
+```
 
-## Code of Conduct
+Edite el archivo `.env` y configure los siguientes valores según la base de datos elegida.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### Usando SQLite
 
-## Security Vulnerabilities
+1. Cree el archivo de la base de datos:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```sh
+   touch database/database.sqlite
+   ```
 
-## License
+2. En el archivo `.env`, configure:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ```env
+   DB_CONNECTION=sqlite
+   DB_DATABASE=/absolute/path/to/database.sqlite
+   ```
+
+#### Usando MySQL
+
+Si prefiere usar MySQL, configure los siguientes valores en el archivo `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nombre_base_de_datos
+DB_USERNAME=usuario
+DB_PASSWORD=contraseña
+```
+
+### Generar la Clave de la Aplicación
+
+```sh
+php artisan key:generate
+```
+
+### Ejecutar Migraciones y Seeders
+
+Ejecute los siguientes comandos para crear las tablas y poblar la base de datos con datos de prueba:
+
+```sh
+php artisan migrate --seed
+```
+
+## Ejecutar el Proyecto
+
+### Iniciar el Servidor de Desarrollo
+
+Para iniciar el servidor local, ejecute:
+
+```sh
+php artisan serve
+```
+
+El proyecto estará disponible en: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+### Acceder con Usuario de Prueba
+
+Puede iniciar sesión con las siguientes credenciales:
+
+- **Correo:** `test@test.com`
+- **Contraseña:** `password`
+
+## Opcional: Compilar Assets
+
+Si el proyecto incluye assets front-end, ejecute:
+
+```sh
+npm install
+npm run dev
+```
+
+## Notas Finales
+
+Si tiene algún problema con permisos en `storage` y `bootstrap/cache`, ejecute:
+
+```sh
+chmod -R 777 storage bootstrap/cache
+```
+
+Con esto, el proyecto estará listo para usarse. ¡Disfruta desarrollando!
