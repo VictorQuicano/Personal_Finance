@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Model
 {
-    use HasFactory;
+    use HasFactory, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -17,10 +18,14 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'profile_picture',
         'first_name',
         'last_name',
-        'plan_nullable_id',
+        'username',
+        'email',
+        'password',
+        'email_verified_at',
+        'profile_picture',
+        'plan_id',
     ];
 
     /**
@@ -33,13 +38,21 @@ class User extends Model
         'plan_nullable_id' => 'integer',
     ];
 
-    public function planNullable(): BelongsTo
+    public function plan(): BelongsTo
     {
-        return $this->belongsTo(PlanNullable::class);
+        return $this->belongsTo(Plan::class);
     }
 
-    public function accountTransactionCategoriesAccountTypes(): HasMany
+    public function accounts(): HasMany
     {
-        return $this->hasMany(AccountTransactionCategoriesAccountType::class);
+        return $this->hasMany(Account::class);
+    }
+    public function accountTypes(): HasMany
+    {
+        return $this->hasMany(AccountType::class);
+    }
+    public function Transaction(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
     }
 }

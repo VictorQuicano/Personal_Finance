@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Account;
+use App\Models\Category;
+use App\Models\User;
 
 class Transaction extends Model
 {
@@ -18,7 +21,9 @@ class Transaction extends Model
     protected $fillable = [
         'amount',
         'is_payment',
-        'account_nullable_user_categories_nullable_id',
+        'account_id',
+        'user_id',
+        'category_id',
     ];
 
     /**
@@ -27,13 +32,22 @@ class Transaction extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'is_payment' => 'boolean',
-        'account_nullable_user_categories_nullable_id' => 'integer',
+        'amoutn' => 'decimal:2',
     ];
 
-    public function accountNullableUserCategoriesNullable(): BelongsTo
+    public function account(): BelongsTo
     {
-        return $this->belongsTo(AccountNullableUserCategoriesNullable::class);
+        return $this->belongsTo(Account::class);
     }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+    
 }

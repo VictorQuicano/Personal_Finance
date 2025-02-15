@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Account;
+use App\Models\Category;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -15,7 +18,10 @@ return new class extends Migration
             $table->id();
             $table->integer('amount');
             $table->boolean('is_payment');
-            $table->foreignId('account_nullable_user_categories_nullable_id');
+            $table->foreignIdFor(Account::class)->nullable();
+            $table->foreignIdFor(Category::class)->nullable();
+            $table->foreignIdFor(User::class);
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

@@ -32,8 +32,13 @@ class Account extends Model
         'user_account_type_nullable_id' => 'integer',
     ];
 
-    public function userAccountTypeNullable(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(UserAccountTypeNullable::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function accountType(): BelongsTo
+    {
+        return $this->belongsTo(AccountType::class);
     }
 }

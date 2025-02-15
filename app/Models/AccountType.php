@@ -20,6 +20,7 @@ class AccountType extends Model
         'name',
         'description',
         'user_id',
+        'is_general'
     ];
 
     /**
