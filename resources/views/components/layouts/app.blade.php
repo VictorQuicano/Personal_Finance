@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@vite('resources/css/app.css')
 
 <head>
     <meta charset="utf-8">
@@ -8,7 +9,7 @@
     <title>{{ $title ?? 'Page Title' }}</title>
 </head>
 
-<body>
+<body class="bg-gray-800">
     {{ $slot }}
 </body>
 

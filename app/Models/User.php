@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Auth\MustVerifyEmail;
 
-class User extends Model
+class User extends Model 
 {
-    use HasFactory, HasRoles;
+    use HasFactory, HasRoles, MustVerifyEmail;
 
     /**
      * The attributes that are mass assignable.
