@@ -17,7 +17,7 @@ Antes de comenzar, asegúrese de tener instalado lo siguiente:
 
 - PHP (≥8.0)
 - Composer
-- Laravel (≥9.x)
+- Laravel (11.x)
 - SQLite o MySQL
 - Node.js y npm (opcional, para assets front-end)
 
