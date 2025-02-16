@@ -60,7 +60,7 @@ Edite el archivo `.env` y configure los siguientes valores según la base de dat
 
    ```env
    DB_CONNECTION=sqlite
-   DB_DATABASE=/absolute/path/to/database.sqlite
+   #DB_DATABASE=/absolute/path/to/database.sqlite
    ```
 
 #### Usando MySQL
